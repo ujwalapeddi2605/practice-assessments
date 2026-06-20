@@ -1,0 +1,65 @@
+using System;
+
+class Task
+{
+    public int TaskId;
+    public string TaskName;
+    public string Status;
+
+    public Task(int id, string name, string status)
+    {
+        TaskId = id;
+        TaskName = name;
+        Status = status;
+    }
+}
+
+class Node
+{
+    public Task Data;
+    public Node Next;
+
+    public Node(Task task)
+    {
+        Data = task;
+    }
+}
+
+class TaskList
+{
+    Node head;
+
+    public void Add(Task task)
+    {
+        Node newNode = new Node(task);
+        newNode.Next = head;
+        head = newNode;
+    }
+
+    public void Traverse()
+    {
+        Node current = head;
+
+        while (current != null)
+        {
+            Console.WriteLine(current.Data.TaskId +
+                              " " +
+                              current.Data.TaskName);
+
+            current = current.Next;
+        }
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        TaskList tasks = new TaskList();
+
+        tasks.Add(new Task(1, "Coding", "Open"));
+        tasks.Add(new Task(2, "Testing", "Pending"));
+
+        tasks.Traverse();
+    }
+}

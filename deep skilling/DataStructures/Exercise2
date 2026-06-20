@@ -1,0 +1,56 @@
+using System;
+class Product
+{
+    public int ProductId;
+    public string ProductName;
+    public string Category;
+    public Product(int id, string name, string category)
+    {
+        ProductId = id;
+        ProductName = name;
+        Category = category;
+    }
+}
+class Program
+{
+    static int LinearSearch(Product[] products, string name)
+    {
+        for (int i = 0; i < products.Length; i++)
+        {
+            if (products[i].ProductName.Equals(name))
+                return i;
+        }
+        return -1;
+    }
+    static int BinarySearch(Product[] products, string name)
+    {
+        int low = 0, high = products.Length - 1;
+        while (low <= high)
+        {
+            int mid = (low + high) / 2;
+            int result = string.Compare(products[mid].ProductName, name);
+
+            if (result == 0)
+                return mid;
+            else if (result < 0)
+                low = mid + 1;
+            else
+                high = mid - 1;
+        }
+        return -1;
+    }
+    static void Main()
+    {
+        Product[] products =
+        {
+            new Product(1,"Laptop","Electronics"),
+            new Product(2,"Mobile","Electronics"),
+            new Product(3,"Tablet","Electronics")
+        };
+        int index = LinearSearch(products, "Mobile");
+        Console.WriteLine("Linear Search Index: " + index);
+        index = BinarySearch(products, "Tablet");
+        Console.WriteLine("Binary Search Index: " + index);
+    }
+}
+

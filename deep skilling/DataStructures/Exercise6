@@ -1,0 +1,45 @@
+using System;
+
+class Book
+{
+    public int BookId;
+    public string Title;
+    public string Author;
+
+    public Book(int id, string title, string author)
+    {
+        BookId = id;
+        Title = title;
+        Author = author;
+    }
+}
+
+class Program
+{
+    static Book LinearSearch(Book[] books, string title)
+    {
+        foreach (Book book in books)
+        {
+            if (book.Title.Equals(title))
+                return book;
+        }
+        return null;
+    }
+
+    static void Main()
+    {
+        Book[] books =
+        {
+            new Book(1,"CSharp","Author1"),
+            new Book(2,"Java","Author2"),
+            new Book(3,"Python","Author3")
+        };
+
+        Book result = LinearSearch(books, "Java");
+
+        if (result != null)
+            Console.WriteLine("Book Found: " + result.Title);
+        else
+            Console.WriteLine("Book Not Found");
+    }
+}

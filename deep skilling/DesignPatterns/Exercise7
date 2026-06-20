@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+
+interface IObserver
+{
+    void Update(double price);
+}
+
+class MobileApp : IObserver
+{
+    public void Update(double price)
+    {
+        Console.WriteLine("Mobile: " + price);
+    }
+}
+
+class StockMarket
+{
+    private List<IObserver> observers =
+        new List<IObserver>();
+
+    public void Register(IObserver observer)
+    {
+        observers.Add(observer);
+    }
+
+    public void Notify(double price)
+    {
+        foreach (var observer in observers)
+        {
+            observer.Update(price);
+        }
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        StockMarket market = new StockMarket();
+
+        market.Register(new MobileApp());
+
+        market.Notify(1200);
+    }
+}
