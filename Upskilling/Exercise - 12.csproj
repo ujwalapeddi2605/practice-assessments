@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Objects and Prototypes</title>
+</head>
+<body>
+
+    <h2>Open Console</h2>
+
+    <script src="main.js"></script>
+</body>
+</html>
